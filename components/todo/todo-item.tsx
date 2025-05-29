@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 type TodoItemProps = {
-  id: string
-  title: string
-  status: string
-}
+  id: string;
+  title: string;
+  status: string;
+};
 
 export default function TodoItem({ id, title, status }: TodoItemProps) {
   return (
@@ -14,7 +14,12 @@ export default function TodoItem({ id, title, status }: TodoItemProps) {
         <span>{`${status[0]?.toUpperCase()}${status.slice(1)}`}</span>
       </div>
       <div className="flex gap-4">
-        <Link href={`/todo/${id}/edit`} className="px-3 py-1.5 bg-gray-200 rounded-md">Edit</Link>
+        <Link
+          href={`/todo/${id}/edit`}
+          className="px-3 py-1.5 bg-gray-200 rounded-md"
+        >
+          Edit
+        </Link>
         <form>
           <button className="px-3 py-1.5 bg-gray-200 rounded-md">Delete</button>
         </form>

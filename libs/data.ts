@@ -1,4 +1,5 @@
 import prisma from "@/libs/prisma";
+import { title } from "process";
 
 export async function fetchLatestTodo() {
   return prisma.todo.findMany({ orderBy: { createdAt: "desc" }, take: 5 });
@@ -37,6 +38,17 @@ function isCountStatus(value: unknown): value is keyof CountStatus {
   return value === "completed" || value === "pending";
 }
 
-export async function fetchTodo() {
+export async function fetchTodo(search: string) {
+  if (search) {
+    // SELECT * FROM todo WHERE title LIKE %search%
+    return prisma.todo.findMany({
+      where: { title: { contains: search, mode: "insensitive" } },
+      orderBy: { createdAt: "desc" },
+    });
+  }
   return prisma.todo.findMany({ orderBy: { createdAt: "desc" } });
+}
+
+export async function fetchTodoById(id: string) {
+  return prisma.todo.findUnique({ where: { id } });
 }
