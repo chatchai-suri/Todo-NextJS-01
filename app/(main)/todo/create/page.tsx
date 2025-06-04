@@ -1,3 +1,4 @@
+import Form from "@/components/todo/form";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,5 +6,5 @@ export const metadata: Metadata = {
 }
 
 export default function CreateTodoPage() {
-  return <div>Create Todo Page</div>;
+  return <Form />;
 }

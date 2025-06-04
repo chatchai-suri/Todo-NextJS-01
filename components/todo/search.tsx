@@ -1,9 +1,8 @@
 "use client";
 
-import { useDebouncedCallback } from 'use-debounce'
+import { useDebouncedCallback } from 'use-debounce';
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { format } from 'path';
 
 export default function Search() {
   // const s = new URLSearchParams();
