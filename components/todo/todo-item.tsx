@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DeleteForm from "@/components/todo/delete-form";
 
 type TodoItemProps = {
   id: string;
@@ -20,10 +21,9 @@ export default function TodoItem({ id, title, status }: TodoItemProps) {
         >
           Edit
         </Link>
-        <form>
-          <button className="px-3 py-1.5 bg-gray-200 rounded-md">Delete</button>
-        </form>
+        <DeleteForm id={id}/>
       </div>
     </div>
   );
 }
+
