@@ -28,6 +28,7 @@ export async function createTodo(
     await new Promise((resolve) => setTimeout(() => resolve(""), 3000));
     const data = todoSchema.parse(rawData);
     await prisma.todo.create({ data });
+    // revalidatePath('/dashboard');
     redirect("/todo");
   } catch (error) {
     if (isRedirectError(error)) throw error;
@@ -60,7 +61,7 @@ export async function updateTodo(id: string, _: unknown, formData: FormData) {
     // Object.fromEntries(formData.entries())
     const data = todoSchema.parse(Object.fromEntries(formData.entries()));
     await prisma.todo.update({ where: { id }, data });
-    revalidatePath("/todo");
+    // revalidatePath("/todo");
     redirect("/todo"); // redirect Internal: throw error
     // return { message: 'success' }
   } catch (error) {
@@ -71,14 +72,11 @@ export async function updateTodo(id: string, _: unknown, formData: FormData) {
   }
 }
 
-export async function updateTodoWithHookForm(
-  id: string,
-  rawData: TodoFormInput
-) {
+export async function updateTodoWithHookForm(id: string, rawData: TodoFormInput) {
   try {
     // const data = todoSchema.parse(rawData);
     // use otherway of validation of zod lib .safePrase
-    const { success, data, error } = todoSchema.safeParse({});
+    const { success, data, error } = todoSchema.safeParse(rawData);
 
     if (!success) {
       return {

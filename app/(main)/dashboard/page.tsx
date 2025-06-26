@@ -26,6 +26,8 @@ export const revalidate = 0; // always do
 export default function DashBoardPage() {
   // new Promise((resolve) => setTimeout(() => resolve(""), 5000));
   // #3 unstable_noStore() 
+  console.log('Dashboard')
+
   return (
     <>
       <div className="grid grid-cols-2 gap-4">
